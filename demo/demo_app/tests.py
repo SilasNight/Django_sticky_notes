@@ -57,23 +57,44 @@ class NotesTest(TestCase):
     #         note = NotesDemo.objects.get(label="Test Label")
 
     def test_home_page(self):
+        """
+        This is to make sure that the home page loads
+        :return:
+        """
         response = self.client.get(reverse('Home'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Welcome")
 
     def test_list_page(self):
+        """
+        this is to make sure the list pages loads.
+        And includes the test note.
+        :return:
+        """
         response = self.client.get(reverse('List'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test Label")
 
-    def test_edit_page(self):
+    def test_update_page(self):
+        """
+        This is to make sure the update page loads
+        :return:
+        """
         response = self.client.get(reverse(f'Update', args=[str(self.id_to_test)]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test Label")
 
     def test_deletion_page(self):
+        """
+        This is used to test if the deletion page does work as
+        intended by deleting the note and redirecting.
+        :return:
+        """
         response = self.client.get(reverse(f'Delete', args=[str(self.id_to_test)]))
         self.assertEqual(response.status_code, 302)
+
+        with self.assertRaises(NotesDemo.DoesNotExist):
+            note = NotesDemo.objects.get(label="Test Label")
 
 
 

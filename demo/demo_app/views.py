@@ -12,6 +12,12 @@ def home(request):
 
 
 def create_note(request):
+    """
+    This is the function that controls the create page.
+    It is used to create new Notes and save them to the database
+    :param request: This is from the website
+    :return:
+    """
     if request.method == "POST":
         print("ping")
         form = NotesDemoForm(request.POST)
@@ -23,6 +29,12 @@ def create_note(request):
 
 
 def update_note(request, pk):
+    """
+    This will update the give notes data
+    :param request: from the website
+    :param pk: this is the id or primary key of the note in the database
+    :return:
+    """
     note = get_object_or_404(NotesDemo, pk=pk)
     if request.method == "POST":
         form = NotesDemoForm(request.POST, instance=note)
@@ -40,12 +52,25 @@ def update_note(request, pk):
 
 
 def delete_note(request, pk):
+    """
+    This is used to delete a given note.
+
+    :param request: I don't know if the function will break if
+           I remove this so I leave it iin
+    :param pk: This is the primary key or id for the given note
+    :return:
+    """
     note = get_object_or_404(NotesDemo, pk=pk)
     note.delete()
     return redirect('http://127.0.0.1:8000/list/')
 
 
 def list_notes(request):
+    """
+    This is to list all the notes that are in the database
+    :param request:
+    :return:
+    """
 
     notes = NotesDemo.objects.all()
     return render(request, "list.html", {'notes': notes})
