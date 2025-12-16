@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+  <header>
+      <nav>
+          <a href="http://127.0.0.1:8000/">Home</a>
+          <a href="http://127.0.0.1:8000/create/">Create</a>
+          <a href="http://127.0.0.1:8000/list/">List</a>
+      </nav>
+  </header>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1>Welcome, This site is used to create and record sticky notes</h1>
+        <h2>Use this at your leisure</h2>
+        <div>
+            <a href="{% url 'Create' %}" class="btn btn-primary">Create</a>
+            <a href="{% url 'List' %}" class="btn btn-success">list</a>
+        </div>
+
+    </div>
+</body>
+</html>

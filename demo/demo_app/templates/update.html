@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update-delete</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="http://127.0.0.1:8000/">Home</a>
+            <a href="http://127.0.0.1:8000/create/">Create</a>
+            <a href="http://127.0.0.1:8000/list/">List</a>
+        </nav>
+    </header>
+    <div class="col-md-3"></div>
+    {% for note in notes %}
+    <div class="col-md-4">
+    <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group ms-4">
+                <label for="label">Label</label>
+                <input class="form-control" type="text" id="label" name="label" value="{{ note.label }}" required>
+            </div>
+            <div class="form-group ms-4">
+                <div class="form-group ms-2">
+                    <label for="first_name">First Name</label>
+                    <input class="form-control" type="text" id="first_name" name="first_name" value="{{ note.first_name }}" required>
+                </div>
+                <div class="form-group ms-2">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" type="text" id="last_name" name="last_name" value="{{ note.last_name }}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <input class="form-control" type="text" id="content" name="content" value="{{ note.content }}" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input class="form-control" type="date" id="date" name="date" value="{{ note.date }}" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+
+        </form>
+        </div>
+        {% endfor %}
+
+</body>
+</html>
