@@ -3,6 +3,19 @@ from django.db import models
 # Create your models here.
 
 
+
+
+
+class Users(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField(primary_key=True)
+    password = models.CharField(max_length=30)
+
+    def dictionary(self):
+        output = {self.username: {"email": self.email, "password": self.password}}
+        return output
+
+
 class NotesDemo(models.Model):
     """
     This is the database model for django to make the database with
@@ -12,6 +25,7 @@ class NotesDemo(models.Model):
     last_name = models.CharField(max_length=30)
     content = models.CharField(max_length=150)
     date = models.DateField()
+    email = models.ForeignKey(Users, on_delete=models.CASCADE)
 
     def relevant_info(self):
         """

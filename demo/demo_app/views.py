@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import NotesDemoForm
-from .models import NotesDemo
+from .models import NotesDemo, Users
 
 
 # Create your views here.
@@ -74,3 +74,14 @@ def list_notes(request):
 
     notes = NotesDemo.objects.all()
     return render(request, "list.html", {'notes': notes})
+
+
+def login(request):
+    if request.method == "POST":
+        login_information = Users.objects.all()
+        # TODO
+    return render(request, "login.html")
+
+
+def register_user(request):
+    return render(request, "register_user.html")
